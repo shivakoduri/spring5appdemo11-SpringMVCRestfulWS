@@ -2,8 +2,10 @@ package com.myprojects.spring.examples.SpringMVCRestWS.bootstrap;
 
 import com.myprojects.spring.examples.SpringMVCRestWS.domain.Category;
 import com.myprojects.spring.examples.SpringMVCRestWS.domain.Customer;
+import com.myprojects.spring.examples.SpringMVCRestWS.domain.Vendor;
 import com.myprojects.spring.examples.SpringMVCRestWS.repositories.CategoryRespository;
 import com.myprojects.spring.examples.SpringMVCRestWS.repositories.CustomerRepository;
+import com.myprojects.spring.examples.SpringMVCRestWS.repositories.VendorRepository;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
@@ -12,10 +14,14 @@ public class Bootstrap implements CommandLineRunner {
 
     private final CategoryRespository categoryRespository;
     private final CustomerRepository customerRepository;
+    private final VendorRepository vendorRepository;
 
-    public Bootstrap(CategoryRespository categoryRespository, CustomerRepository customerRepository) {
+    public Bootstrap(CategoryRespository categoryRespository,
+                     CustomerRepository customerRepository,
+                     VendorRepository vendorRepository) {
         this.categoryRespository = categoryRespository;
         this.customerRepository = customerRepository;
+        this.vendorRepository = vendorRepository;
     }
 
     @Override
@@ -23,7 +29,20 @@ public class Bootstrap implements CommandLineRunner {
 
         loadCategories();
         loadCustomers();
+        loadVendors();
     }
+
+    private void loadVendors() {
+        Vendor vendor1 = new Vendor();
+        vendor1.setName("Vendor 1");
+        vendorRepository.save(vendor1);
+
+        Vendor vendor2 = new Vendor();
+        vendor2.setName("Vendor 2");
+        vendorRepository.save(vendor2);
+
+    }
+
 
     private void loadCategories() {
         Category fruits = new Category();
