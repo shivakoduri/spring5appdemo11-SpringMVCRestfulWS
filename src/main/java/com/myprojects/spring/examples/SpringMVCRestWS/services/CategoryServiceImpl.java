@@ -12,23 +12,23 @@ import java.util.stream.Collectors;
 @Service
 public class CategoryServiceImpl implements CategoryService {
 
-    private CategoryMapper categoryMapper;
-    private CategoryRespository categoryRespository;
+    private  final CategoryMapper categoryMapper;
+    private  final CategoryRespository categoryRespository;
 
-    @Autowired
-    public void setCategoryMapper(CategoryMapper categoryMapper){
-        this.categoryMapper = categoryMapper;
-    }
-
-    @Autowired
-    public void setCategoryRespository(CategoryRespository categoryRespository){
-        this.categoryRespository = categoryRespository;
-    }
-
-//    public CategoryServiceImpl(CategoryMapper categoryMapper,  CategoryRespository categoryRespository) {
+//    @Autowired
+//    public void setCategoryMapper(CategoryMapper categoryMapper){
 //        this.categoryMapper = categoryMapper;
+//    }
+//
+//    @Autowired
+//    public void setCategoryRespository(CategoryRespository categoryRespository){
 //        this.categoryRespository = categoryRespository;
 //    }
+
+    public CategoryServiceImpl(CategoryMapper categoryMapper,  CategoryRespository categoryRespository) {
+        this.categoryMapper = categoryMapper;
+        this.categoryRespository = categoryRespository;
+    }
 
     @Override
     public List<CategoryDTO> getAllCategories() {
